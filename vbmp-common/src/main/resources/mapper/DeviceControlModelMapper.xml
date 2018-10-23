@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etekcity.vbmp.common.router.dao.mapper.DeviceControlModelMapper">
+    <resultMap id="BaseResultMap" type="com.etekcity.vbmp.common.router.dao.model.DeviceControlModel">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="config_model" jdbcType="VARCHAR" property="configModel"/>
+        <result column="identify" jdbcType="VARCHAR" property="identify"/>
+        <result column="operation" jdbcType="VARCHAR" property="operation"/>
+    </resultMap>
+</mapper>

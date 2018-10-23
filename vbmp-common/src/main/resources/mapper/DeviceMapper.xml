@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etekcity.vbmp.common.comm.dao.mapper.DeviceMapper">
+    <resultMap id="BaseResultMap" type="com.etekcity.vbmp.common.comm.dao.model.DeviceInfo">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="account_id" jdbcType="VARCHAR" property="accountId"/>
+        <result column="device_type" jdbcType="VARCHAR" property="deviceType"/>
+        <result column="device_name" jdbcType="VARCHAR" property="deviceName"/>
+        <result column="device_img" jdbcType="VARCHAR" property="deviceImg"/>
+        <result column="device_cid" jdbcType="VARCHAR" property="deviceCid"/>
+        <result column="uuid" jdbcType="VARCHAR" property="uuid"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="device_connection_type" jdbcType="VARCHAR" property="deviceConnectionType"/>
+        <result column="allow_notify" jdbcType="VARCHAR" property="allowNotify"/>
+        <result column="current_firm_version" jdbcType="VARCHAR" property="currentFirmVersion"/>
+        <result column="owner_ship" jdbcType="VARCHAR" property="ownerShip"/>
+        <result column="device_history_name" jdbcType="VARCHAR" property="deviceHistoryName"/>
+        <result column="shared_people_id" jdbcType="VARCHAR" property="sharedPeopleId"/>
+        <result column="device_open_time" jdbcType="TIMESTAMP" property="deviceOpenTime"/>
+        <result column="device_close_time" jdbcType="TIMESTAMP" property="deviceCloseTime"/>
+        <result column="time_zone" jdbcType="VARCHAR" property="timeZone"/>
+    </resultMap>
+    <!--<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from device_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="DeviceInfo">
+    insert into device_info (id, account_id, device_type,
+      device_name, device_img, device_cid,
+      uuid, type, device_connection_type,
+      allow_notify, current_firm_version, owner_ship,
+      device_history_name, shared_people_id, device_open_time,
+      device_close_time, time_zone)
+    values (#{id,jdbcType=INTEGER}, #{accountId,jdbcType=VARCHAR}, #{deviceType,jdbcType=VARCHAR},
+      #{deviceName,jdbcType=VARCHAR}, #{deviceImg,jdbcType=VARCHAR}, #{deviceCid,jdbcType=VARCHAR},
+      #{uuid,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{deviceConnectionType,jdbcType=VARCHAR},
+      #{allowNotify,jdbcType=VARCHAR}, #{currentFirmVersion,jdbcType=VARCHAR}, #{ownerShip,jdbcType=VARCHAR},
+      #{deviceHistoryName,jdbcType=VARCHAR}, #{sharedPeopleId,jdbcType=VARCHAR}, #{deviceOpenTime,jdbcType=TIMESTAMP},
+      #{deviceCloseTime,jdbcType=TIMESTAMP}, #{timeZone,jdbcType=VARCHAR})
+  </insert>
+    <update id="updateByPrimaryKey" parameterType="DeviceInfo">
+    update device_info
+    set account_id = #{accountId,jdbcType=VARCHAR},
+      device_type = #{deviceType,jdbcType=VARCHAR},
+      device_name = #{deviceName,jdbcType=VARCHAR},
+      device_img = #{deviceImg,jdbcType=VARCHAR},
+      device_cid = #{deviceCid,jdbcType=VARCHAR},
+      uuid = #{uuid,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      device_connection_type = #{deviceConnectionType,jdbcType=VARCHAR},
+      allow_notify = #{allowNotify,jdbcType=VARCHAR},
+      current_firm_version = #{currentFirmVersion,jdbcType=VARCHAR},
+      owner_ship = #{ownerShip,jdbcType=VARCHAR},
+      device_history_name = #{deviceHistoryName,jdbcType=VARCHAR},
+      shared_people_id = #{sharedPeopleId,jdbcType=VARCHAR},
+      device_open_time = #{deviceOpenTime,jdbcType=TIMESTAMP},
+      device_close_time = #{deviceCloseTime,jdbcType=TIMESTAMP},
+      time_zone = #{timeZone,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, account_id, device_type, device_name, device_img, device_cid, uuid, type,
+    device_connection_type, allow_notify, current_firm_version, owner_ship, device_history_name,
+    shared_people_id, device_open_time, device_close_time, time_zone
+    from device_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+    select id, account_id, device_type, device_name, device_img, device_cid, uuid, type,
+    device_connection_type, allow_notify, current_firm_version, owner_ship, device_history_name,
+    shared_people_id, device_open_time, device_close_time, time_zone
+    from device_info
+  </select>-->
+</mapper>

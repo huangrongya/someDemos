@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etekcity.vbmp.timing.modules.timer.dao.DeviceTimerMapper">
+    <resultMap id="BaseResultMap" type="com.etekcity.vbmp.timing.modules.timer.bean.DeviceTimer">
+        <constructor>
+            <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="uuid" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="device_cid" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="seconds" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="execute_time" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="action" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="status" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="switch_no" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="start_times" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="account_id" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="turnon_time" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, uuid, device_cid, seconds, execute_time, action, status, switch_no, start_times,
+        account_id, turnon_time, create_time
+    </sql>
+    <select id="selectByPrimaryKeys" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from device_timer
+        where id in
+        <foreach collection="ids" item="id" separator="," close=")" open="(">
+            #{id,jdbcType=VARCHAR}
+        </foreach>
+    </select>
+    <update id="updateStatusByIds" parameterType="com.etekcity.vbmp.timing.modules.timer.bean.DeviceTimer">
+        update device_timer set status = #{status}
+        where id in
+        <foreach collection="ids" item="id" separator="," close=")" open="(">
+            #{id,jdbcType=VARCHAR}
+        </foreach>
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.etekcity.vbmp.timing.modules.timer.bean.DeviceTimer">
+        update device_timer
+        set uuid = #{uuid,jdbcType=VARCHAR},
+          device_cid = #{deviceCid,jdbcType=VARCHAR},
+          seconds = #{seconds,jdbcType=INTEGER},
+          execute_time = #{executeTime,jdbcType=TIMESTAMP},
+          action = #{action,jdbcType=VARCHAR},
+          status = #{status,jdbcType=VARCHAR},
+          switch_no = #{switchNo,jdbcType=INTEGER},
+          start_times = #{startTimes,jdbcType=INTEGER},
+          account_id = #{accountId,jdbcType=VARCHAR},
+          turnon_time = #{turnonTime,jdbcType=TIMESTAMP},
+          create_time = #{createTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

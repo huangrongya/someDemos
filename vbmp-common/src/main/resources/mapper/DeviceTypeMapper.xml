@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etekcity.vbmp.common.comm.dao.mapper.DeviceTypeMapper">
+    <resultMap id="BaseResultMap" type="com.etekcity.vbmp.common.comm.dao.model.DeviceType">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="type_name" jdbcType="VARCHAR" property="typeName"/>
+        <result column="type_img" jdbcType="VARCHAR" property="typeImg"/>
+        <result column="model" jdbcType="VARCHAR" property="model"/>
+        <result column="model_img" jdbcType="VARCHAR" property="modelImg"/>
+        <result column="model_name" jdbcType="VARCHAR" property="modelName"/>
+        <result column="connection_type" jdbcType="VARCHAR" property="connectionType"/>
+        <result column="electricity" jdbcType="VARCHAR" property="electricity"/>
+        <result column="power" jdbcType="VARCHAR" property="power"/>
+        <result column="latest_firm_version" jdbcType="VARCHAR" property="latestFirmVersion"/>
+        <result column="device_img" jdbcType="VARCHAR" property="deviceImg"/>
+        <result column="pid" jdbcType="VARCHAR" property="pid"/>
+        <result column="config_model" jdbcType="VARCHAR" property="configModel"/>
+        <result column="smart_config_video_url" jdbcType="VARCHAR" property="smartConfigVideoUrl"/>
+        <result column="APN_config_video_url" jdbcType="VARCHAR" property="apnConfigVideoUrl"/>
+        <result column="away_max_number" jdbcType="SMALLINT" property="awayMaxNumber"/>
+        <result column="schedule_max_number" jdbcType="SMALLINT" property="scheduleMaxNumber"/>
+        <result column="timer_max_number" jdbcType="SMALLINT" property="timerMaxNumber"/>
+        <result column="timer_max_time" jdbcType="INTEGER" property="timerMaxTime"/>
+        <result column="firm_type" jdbcType="VARCHAR" property="firmType"/>
+    </resultMap>
+    <!--<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from device_type
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="DeviceType">
+    insert into device_type (id, type, type_name, 
+      type_img, model, model_img, 
+      model_name, connection_type, electricity, 
+      power, latest_firm_version, device_img, 
+      pid, config_model, smart_config_video_url, 
+      APN_config_video_url, away_max_number, schedule_max_number, 
+      timer_max_number, timer_max_time)
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{typeName,jdbcType=VARCHAR}, 
+      #{typeImg,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR}, #{modelImg,jdbcType=VARCHAR}, 
+      #{modelName,jdbcType=VARCHAR}, #{connectionType,jdbcType=VARCHAR}, #{electricity,jdbcType=VARCHAR}, 
+      #{power,jdbcType=VARCHAR}, #{latestFirmVersion,jdbcType=VARCHAR}, #{deviceImg,jdbcType=VARCHAR}, 
+      #{pid,jdbcType=VARCHAR}, #{configModel,jdbcType=VARCHAR}, #{smartConfigVideoUrl,jdbcType=VARCHAR}, 
+      #{apnConfigVideoUrl,jdbcType=VARCHAR}, #{awayMaxNumber,jdbcType=SMALLINT}, #{scheduleMaxNumber,jdbcType=SMALLINT}, 
+      #{timerMaxNumber,jdbcType=SMALLINT}, #{timerMaxTime,jdbcType=INTEGER})
+  </insert>
+    <update id="updateByPrimaryKey" parameterType="DeviceType">
+    update device_type
+    set type = #{type,jdbcType=VARCHAR},
+      type_name = #{typeName,jdbcType=VARCHAR},
+      type_img = #{typeImg,jdbcType=VARCHAR},
+      model = #{model,jdbcType=VARCHAR},
+      model_img = #{modelImg,jdbcType=VARCHAR},
+      model_name = #{modelName,jdbcType=VARCHAR},
+      connection_type = #{connectionType,jdbcType=VARCHAR},
+      electricity = #{electricity,jdbcType=VARCHAR},
+      power = #{power,jdbcType=VARCHAR},
+      latest_firm_version = #{latestFirmVersion,jdbcType=VARCHAR},
+      device_img = #{deviceImg,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=VARCHAR},
+      config_model = #{configModel,jdbcType=VARCHAR},
+      smart_config_video_url = #{smartConfigVideoUrl,jdbcType=VARCHAR},
+      APN_config_video_url = #{apnConfigVideoUrl,jdbcType=VARCHAR},
+      away_max_number = #{awayMaxNumber,jdbcType=SMALLINT},
+      schedule_max_number = #{scheduleMaxNumber,jdbcType=SMALLINT},
+      timer_max_number = #{timerMaxNumber,jdbcType=SMALLINT},
+      timer_max_time = #{timerMaxTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, type, type_name, type_img, model, model_img, model_name, connection_type, 
+    electricity, power, latest_firm_version, device_img, pid, config_model, smart_config_video_url, 
+    APN_config_video_url, away_max_number, schedule_max_number, timer_max_number, timer_max_time
+    from device_type
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+    select id, type, type_name, type_img, model, model_img, model_name, connection_type, 
+    electricity, power, latest_firm_version, device_img, pid, config_model, smart_config_video_url, 
+    APN_config_video_url, away_max_number, schedule_max_number, timer_max_number, timer_max_time
+    from device_type
+  </select>-->
+</mapper>

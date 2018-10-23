@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etekcity.vbmp.timing.modules.away.dao.DeviceAwayMapper">
+    <resultMap id="BaseResultMap" type="com.etekcity.vbmp.timing.modules.away.bean.DeviceAway">
+        <constructor>
+            <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="uuid" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="device_id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="device_cid" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="start_time" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="end_time" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="execute_start_time" javaType="java.util.Date" jdbcType="TIME"/>
+            <arg column="execute_end_time" javaType="java.util.Date" jdbcType="TIME"/>
+            <arg column="away_repeat" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="time_zone" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="status" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="switch_no" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="account_id" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="turnon_time" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, uuid,device_id, device_cid, start_time, end_time, execute_start_time, execute_end_time,
+    away_repeat, time_zone, status, switch_no, account_id, turnon_time, create_time
+  </sql>
+    <select id="selectByPrimaryKeys" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from device_away
+        where id in
+        <foreach collection="ids" item="id" separator="," close=")" open="(">
+            #{id,jdbcType=VARCHAR}
+        </foreach>
+    </select>
+
+    <update id="updateStatusByIds">
+        update device_away
+        set status =#{status}
+        where id in
+        <foreach collection="ids" item="id" separator="," close=")" open="(">
+            #{id,jdbcType=VARCHAR}
+        </foreach>
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.etekcity.vbmp.timing.modules.away.bean.DeviceAway">
+    update device_away
+    set uuid = #{uuid,jdbcType=VARCHAR},
+      device_cid = #{deviceCid,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=VARCHAR},
+      execute_start_time = #{executeStartTime,jdbcType=TIME},
+      execute_end_time = #{executeEndTime,jdbcType=TIME},
+      away_repeat = #{awayRepeat,jdbcType=VARCHAR},
+      time_zone = #{timeZone,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      switch_no = #{switchNo,jdbcType=INTEGER},
+      account_id = #{accountId,jdbcType=VARCHAR},
+      turnon_time = #{turnonTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

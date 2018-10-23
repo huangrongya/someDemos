@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etekcity.vbmp.common.comm.dao.mapper.DeviceSharerMapper">
+    <resultMap id="BaseResultMap" type="com.etekcity.vbmp.common.comm.dao.model.DeviceSharer">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="device_cid" jdbcType="VARCHAR" property="deviceCid"/>
+        <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+        <result column="is_history" jdbcType="BIT" property="isHistory"/>
+        <result column="is_deleted" jdbcType="BIT" property="isDeleted"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, device_cid, user_id, is_history, is_deleted, create_time, update_time
+  </sql>
+
+    <insert id="insertWithMyCat" parameterType="com.etekcity.vbmp.common.comm.dao.model.DeviceSharer">
+    insert into device_sharer (id, device_cid, user_id,
+      is_history, is_deleted, create_time,
+      update_time)
+    values (next value for MYCATSEQ_GLOBAL, #{deviceCid,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR},
+      #{isHistory,jdbcType=BIT}, #{isDeleted,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+
+    <insert id="insertSelectiveWithMyCat" parameterType="com.etekcity.vbmp.common.comm.dao.model.DeviceSharer">
+        insert into device_sharer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id == null">
+                id,
+            </if>
+            <if test="deviceCid != null">
+                device_cid,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="isHistory != null">
+                is_history,
+            </if>
+            <if test="isDeleted != null">
+                is_deleted,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+        /*!mycat:catlet=demo.catlets.BatchInsertSequence */
+        insert into device_sharer (id, device_cid, user_id,
+        is_history, is_deleted, create_time,
+        update_time)
+        values
+        <foreach open="(" collection="list" item="element" index="index" separator="," close=")">
+            next value for MYCATSEQ_GLOBAL, #{element.deviceCid,jdbcType=VARCHAR}, #{element.userId,jdbcType=VARCHAR},
+            #{element.isHistory,jdbcType=BIT}, #{element.isDeleted,jdbcType=BIT},
+            #{element.createTime,jdbcType=TIMESTAMP},
+            #{element.updateTime,jdbcType=TIMESTAMP}
+        </foreach>
+    </insert>
+
+    <update id="addExistSharers">
+        update device_sharer
+        set is_history = 1 ,
+        is_deleted = 0 ,
+        update_time = NOW()
+        where device_cid = #{deviceCid} and user_id in
+        <foreach open="(" collection="deviceSharerList" item="element" index="index" separator="," close=")">
+            #{element.userId,jdbcType=VARCHAR}
+        </foreach>
+    </update>
+    <update id="updateByUserIdAndCid" parameterType="com.etekcity.vbmp.common.comm.dao.model.DeviceSharer">
+        update device_sharer
+        set
+        <if test="isHistory != null">
+            is_history = #{isHistory,jdbcType=BIT} ,
+        </if>
+        <if test="isDeleted != null">
+            is_deleted = #{isDeleted,jdbcType=BIT} ,
+        </if>
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where device_cid = #{deviceCid,jdbcType=VARCHAR}
+        <if test="userId != null">
+            and user_id = #{userId,jdbcType=VARCHAR}
+        </if>
+    </update>
+</mapper>

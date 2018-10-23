@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etekcity.vbmp.common.comm.dao.mapper.SubTableModelMapper">
+    <resultMap id="BaseResultMap" type="com.etekcity.vbmp.common.comm.dao.model.SubTableModel">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="sub_table_name" jdbcType="VARCHAR" property="subTableName"/>
+        <result column="config_models" jdbcType="VARCHAR" property="configModels"/>
+    </resultMap>
+
+    <delete id="deleteSubTableNameTable" parameterType="com.etekcity.vbmp.common.comm.dao.model.SubTableQueryModel">
+        delete from ${subTableName} where
+        <choose>
+            <when test="cids != null and cids != ''">
+                FIND_IN_SET(device_cid, #{cids, jdbcType=VARCHAR})
+            </when>
+            <otherwise>
+                FIND_IN_SET(uuid, #{uuids, jdbcType=VARCHAR})
+            </otherwise>
+        </choose>
+    </delete>
+</mapper>

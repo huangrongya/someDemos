@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etekcity.vbmp.common.comm.dao.mapper.FireBaseMapper">
+    <resultMap id="BaseResultMap" type="com.etekcity.vbmp.common.comm.dao.model.FireBaseInfo">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="modelname" jdbcType="VARCHAR" property="modelName"/>
+        <result column="msgkey" jdbcType="VARCHAR" property="msgKey"/>
+        <result column="msgvalue" jdbcType="VARCHAR" property="msgValue"/>
+    </resultMap>
+    
+</mapper>

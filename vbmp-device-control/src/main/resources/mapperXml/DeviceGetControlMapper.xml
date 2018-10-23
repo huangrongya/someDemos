@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etekcity.vbmp.device.control.dao.mapper.DeviceGetControlMapper">
+    <resultMap id="BaseResultMap" type="com.etekcity.vbmp.device.control.dao.model.DeviceGetConrtol">
+        <result column="agreement" jdbcType="VARCHAR" property="agreement"/>
+        <result column="param_map" jdbcType="VARCHAR" property="paramMap"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="http_method_id" jdbcType="INTEGER" property="httpMethodID"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    agreement, param_map, url, http_method_id
+  </sql>
+
+    <select id="getAgreement" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from device_control
+        where identify = #{identify,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getParameters" parameterType="java.lang.String"
+            resultType="com.etekcity.vbmp.device.control.dao.model.DeviceType">
+    select
+    address,access_id,access_key,authkey
+    from device_type
+    where config_model = #{configModel,jdbcType=VARCHAR}
+  </select>
+
+    <insert id="insetConrtolMapper" parameterType="com.etekcity.vbmp.device.control.dto.InsertConrtolRequest">
+    insert into device_control (id, agreement, param_map, url,
+      http_method_id, identify)
+    values (next value for MYCATSEQ_GLOBAL, #{agreement,jdbcType=VARCHAR}, #{paramMap,jdbcType=VARCHAR},
+      #{url,jdbcType=VARCHAR}, #{httpMethodId,jdbcType=VARCHAR}, #{identify,jdbcType=VARCHAR}
+     )
+  </insert>
+
+</mapper>

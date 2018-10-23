@@ -1,0 +1,49 @@
+server:
+  port: 7073
+
+
+spring:
+  application:
+    name: timing
+  redis:
+    host: 192.168.100.61
+    port: 6388
+    password: Vesync@2345
+    timeout: 0
+    pool:
+      max-active: 8
+      max-idle: 8
+      max-wait: -1
+      min-idle: 0
+    sentinel:
+      master: testLocal
+      nodes: 192.168.100.43:26379,192.168.100.43:26380,192.168.100.43:26370
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.100.127:8066/VBMP?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Hongkong&useSSL=false
+    username: root
+    password: 123456
+
+
+token:
+  remoteAddress: http://test-online.vesync.com:6005/v1/auth
+  redisdb: 2
+  expireTime: 300
+
+mybatis:
+  mapperLocations: classpath:mappers/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+mapper:
+  mappers: com.etekcity.vbmp.timing.util.MyMapper
+  identity: SELECT next value for MYCATSEQ_GLOBAL
+  b-e-f-o-r-e: true
+
+schedule:
+  redis:
+    key: vbmp-common:schedule:key
+
+device:
+  ctrl:
+    url: http://192.168.100.126:8082/vbmp/control/device/getConrtol

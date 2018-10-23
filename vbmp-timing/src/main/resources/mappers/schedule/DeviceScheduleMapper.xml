@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etekcity.vbmp.timing.modules.schedule.dao.DeviceScheduleMapper">
+    <select id="selectByPrimaryKeys" parameterType="java.lang.Integer"
+            resultType="com.etekcity.vbmp.timing.modules.schedule.bean.DeviceSchedule">
+        select
+        id, uuid, device_cid, start_time, end_time, execute_start_time, execute_end_time,
+        start_action, end_action, schedule_repeat, time_zone, status, event, switch_no, start_sun_time,
+        end_sun_time, account_id, create_time, turnon_time
+        from device_schedule
+        where id in
+        <foreach collection="ids" item="id" separator="," close=")" open="(">
+            #{id,jdbcType=VARCHAR}
+        </foreach>
+    </select>
+    <update id="updateStatusByIds">
+        update device_schedule
+        set status =#{status}
+        where id in
+        <foreach collection="ids" item="id" separator="," close=")" open="(">
+            #{id,jdbcType=VARCHAR}
+        </foreach>
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.etekcity.vbmp.timing.modules.schedule.bean.DeviceSchedule">
+        update device_schedule
+        set uuid = #{uuid,jdbcType=VARCHAR},
+          device_cid = #{deviceCid,jdbcType=VARCHAR},
+          start_time = #{startTime,jdbcType=VARCHAR},
+          end_time = #{endTime,jdbcType=VARCHAR},
+          execute_start_time = #{executeStartTime,jdbcType=TIME},
+          execute_end_time = #{executeEndTime,jdbcType=TIME},
+          start_action = #{startAction,jdbcType=VARCHAR},
+          end_action = #{endAction,jdbcType=VARCHAR},
+          schedule_repeat = #{scheduleRepeat,jdbcType=VARCHAR},
+          time_zone = #{timeZone,jdbcType=VARCHAR},
+          status = #{status,jdbcType=VARCHAR},
+          event = #{event,jdbcType=VARCHAR},
+          switch_no = #{switchNo,jdbcType=INTEGER},
+          start_sun_time = #{startSunTime,jdbcType=VARCHAR},
+          end_sun_time = #{endSunTime,jdbcType=VARCHAR},
+          account_id = #{accountId,jdbcType=VARCHAR},
+          create_time = #{createTime,jdbcType=TIMESTAMP},
+          turnon_time = #{turnonTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
